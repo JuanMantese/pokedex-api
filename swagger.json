@@ -1,0 +1,53 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Pokedex API Documentation",
+      "description": "Documentation for the Pokedex API Proyect by Juan Mantese",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3000",
+        "description": "Local server"
+      }
+    ],
+    "paths": {
+      "/v1/pokemons": {
+        "get": {
+          "summary": "Get information of all Pokemon",
+          "responses": {
+            "200": {
+              "description": "Data of all Pokemon"
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          }
+        }
+      },
+      "/v1/pokemons/{name}": {
+        "get": {
+          "summary": "Get basic information of a Pokemon by name",
+          "parameters": [
+            {
+              "name": "name",
+              "in": "path",
+              "description": "Name of the Pokemon",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Data of the requested Pokemon"
+            },
+            "404": {
+              "description": "Pokemon not found"
+            }
+          }
+        }
+      }
+    }
+  }
