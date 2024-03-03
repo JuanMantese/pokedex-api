@@ -30,14 +30,20 @@ const getPokemonDetail = async (reqData) => {
     console.log(reqData);
     const name = reqData.params.name.toLowerCase();
     const pokeDataRes = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
+    const { id, sprites, types, weight, abilities, moves } = pokeDataRes.data;
     
-    const { sprites, types, weight, abilities } = pokeDataRes.data;
+    const speciesRes = await axios.get(`https://pokeapi.co/api/v2/characteristic/${id}`);
+    const { descriptions } = speciesRes.data;
     
+    const description = descriptions.find(descrip => descrip.language.name === 'es');
+
     const pokemonData = {
       photo: sprites.front_default,
       type: types.map(type => type.type.name),
       weight: weight,
-      abilities: abilities.map(ability => ability.ability.name)
+      abilities: abilities.map(ability => ability.ability.name),
+      description: description.description,
+      moves: moves.map(moveItem => moveItem.move.name)
     };
 
     return pokemonData
