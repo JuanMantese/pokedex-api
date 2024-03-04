@@ -7,6 +7,10 @@
     },
     "servers": [
       {
+        "url": "https://pokedex-juan-mantese-341d2c65270b.herokuapp.com",
+        "description": "Servidor principal"
+      },
+      {
         "url": "http://localhost:3000",
         "description": "Local server"
       }
